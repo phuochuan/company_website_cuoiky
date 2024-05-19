@@ -4,7 +4,7 @@
 ### Phần cơ bản: 
 Tạo một website cơ bản thực hiện công việc quản lý nội dung của công ty, bao gồm các đối tượng liên quan như: bài đăng thông báo, lịch trình làm việc của công ty, thể loại, nhân viên phòng ban, công ty. Website gồm các màn hình có các chức năng như thêm, sửa, xóa, danh sách, tìm kiếm (theo thuộc tính của đối tượng trong màn hình tương ứng). 
 
-Yêu cầu:
+**Yêu cầu**:
 **Khởi tạo được dự án cơ bản**
 Tạo các đối tượng theo đề bài để thực hiện công việc quản lý trong web
 Tạo được chức năng thêm, sửa, xóa cho các màn hình
@@ -16,7 +16,7 @@ Kiểm tra ràng buộc dữ liệu cho chương trình. Dữ liệu của các 
 – Số điện thoại: phải là chuỗi số có chiều dài 10 ký tự và phải bắt đầu bằng một trong các chuỗi số: 090, 098, 091, 031, 035 hoặc 038. 
 Chú ý: các trường tạo cho các đối tượng càng chi tiết, được sử dụng cho các việc lọc, tìm kiếm, hiển thị đầy đủ thì mới đủ điểm, chứ không thể 3 thuộc tính cũng giống 7 thuộc tính.
 
-**Phần nâng cao:**
+### Phần nâng cao:
 Có thêm mục upload quản lý ảnh của bài đăng, ảnh minh hoạ, thumbnail của lịch trình, ảnh trong bài...
 Có thêm đối tượng người dùng để quản lý chương trình
 Có màn hình login cho người dùng để vào màn hình admin mới thao tác được các màn hình trên (tham khảo hướng dẫn https://medium.com/@bruno-bernardes-tech/how-to-implement-jwt-authentication-in-asp-net-core-269f258f19be)
