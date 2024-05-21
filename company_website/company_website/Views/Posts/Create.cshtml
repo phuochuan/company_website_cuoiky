@@ -1,40 +1,114 @@
-﻿@model company_website.Models.Post
+﻿@model company_website.dto.PostDto
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Post</h4>
+<style>
+
+
+    .page-title {
+        align-items: center;
+        text-align: center;
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+    /* Style for the form container */
+    .form-container {
+        max-width: 400px; /* Limit the maximum width of the form */
+        margin: 0 auto; /* Center the form horizontally */
+        padding: 20px; /* Add some padding inside the form */
+        border: 1px solid #ccc; /* Add a border around the form */
+        border-radius: 5px; /* Add rounded corners */
+        background-color: #f9f9f9; /* Light background color */
+    }
+
+    /* Style for form labels */
+    .form-group label {
+        margin-bottom: 5px; /* Add some space below each label */
+    }
+
+    /* Style for form inputs */
+    .form-group input[type="text"],
+    .form-group select {
+        width: 100%; /* Make inputs fill the entire width of the container */
+        padding: 10px; /* Add padding inside inputs */
+        margin-bottom: 10px; /* Add some space below each input */
+        border: 1px solid #ccc; /* Add a border around inputs */
+        border-radius: 3px; /* Add rounded corners to inputs */
+    }
+
+    /* Style for form submit button */
+    .form-group input[type="submit"] {
+        width: auto; /* Let the button determine its own width */
+        padding: 10px 20px; /* Add padding inside the button */
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none; /* Remove button border */
+        border-radius: 3px; /* Add rounded corners to the button */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+
+    /* Style for back to list link */
+    .back-list a {
+        display: block; /* Make the link a block-level element */
+        margin-top: 20px; /* Add some space above the link */
+        color: #007bff; /* Link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+        /* Style for back to list link on hover */
+        .back-list a:hover {
+            color: #0056b3; /* Darker link color on hover */
+        }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+<h1 class="page-title">Create New Post</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" id="postForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAccountId" class="control-label"></label>
-                <select asp-for="UserAccountId" class ="form-control" asp-items="ViewBag.UserAccountId"></select>
+                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Category, "Id", "Name"))"> </select>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <input asp-for="Title" class="form-control" id="postTitle" />
+                <span id="titleError" class="text-danger"></span> 
+
             </div>
             <div class="form-group">
-                <label asp-for="Thumbnail" class="control-label"></label>
-                <input asp-for="Thumbnail" class="form-control" />
-                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                <label asp-for="Abstract" class="control-label"></label>
+                <input asp-for="Abstract" class="form-control" />
+                <span asp-validation-for="Abstract" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
                 <input asp-for="Content" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Thumbnail" class="control-label"></label>
+                <input asp-for="Thumbnail" class="form-control" type="file" />
+                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -49,3 +123,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    document.getElementById("postForm").addEventListener("submit", function (event) {
+        var titleInput = document.getElementById("postTitle");
+        var title = titleInput.value.trim();
+        var titleError = document.getElementById("titleError");
+        var minLength = 20;
+        var maxLength = 150;
+
+        if (title.length < minLength || title.length > maxLength) {
+            titleError.textContent = "Title must be between " + minLength + " and " + maxLength + " characters long.";
+            event.preventDefault(); // Prevent form submission
+        } else {
+            titleError.textContent = ""; // Clear error message
+        }
+    });
+</script>
