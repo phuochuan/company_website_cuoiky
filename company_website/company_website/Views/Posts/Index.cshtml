@@ -1,59 +1,294 @@
 ﻿@model IEnumerable<company_website.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Post Management";
 }
 
-<h1>Index</h1>
+
+
+<style>
+    /* Table styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Header row styles */
+    .title {
+        background-color: #f8f9fa; /* Light gray background */
+        color: #333; /* Text color */
+        font-weight: bold;
+    }
+
+    /* Content row styles */
+    .row-content {
+        background-color: #fff; /* White background */
+    }
+
+        /* Alternate row styles */
+        .row-content:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray background for alternate rows */
+        }
+
+        /* Hover styles */
+        .row-content:hover {
+            background-color: #e9ecef; /* Light gray background when hovering */
+        }
+
+    /* Cell padding and border */
+    th, td {
+        padding: 10px; /* Padding for cells */
+        border: 1px solid #ddd; /* Border for cells */
+    }
+
+        /* Links in cells */
+        td a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+            td a:hover {
+                text-decoration: underline; /* Underline on hover */
+            }
+
+    .page-title {
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+
+
+
+
+    /* Style for the search container */
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    /* Style for the search input */
+    #searchInput {
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px 0 0 5px; /* Rounded left corners */
+        border: 1px solid #ccc;
+        margin-left: 10px;
+    }
+
+    /* Style for the search button */
+    .search-button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0; /* Rounded right corners */
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    /* Style for the dropdown container */
+    .dropdown {
+        position: relative;
+        margin-left: 10px; /* Add some space between search input/button and dropdown */
+    }
+
+    /* Style for the dropdown button */
+    .dropbtn {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Style for the dropdown content */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+
+        /* Style for dropdown options */
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            /* Style for dropdown options on hover */
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    /* Show the dropdown content when the dropdown button is clicked */
+    .show {
+        display: block;
+    }
+    /* Style cho select box */
+    #filterDropdown {
+        padding: 8px; /* Padding cho select box */
+        font-size: 14px; /* Kích thước font chữ */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 4px; /* Bo góc */
+        background-color: #fff; /* Màu nền */
+        color: #333; /* Màu chữ */
+    }
+
+        /* Style cho các option trong select box */
+        #filterDropdown option {
+            padding: 8px; /* Padding cho từng option */
+            font-size: 14px; /* Kích thước font chữ */
+            background-color: #fff; /* Màu nền */
+            color: #333; /* Màu chữ */
+        }
+
+            /* Hover effect cho các option */
+            #filterDropdown option:hover {
+                background-color: #f2f2f2; /* Màu nền khi hover */
+                color: #333; /* Màu chữ khi hover */
+            }
+
+</style>
+
+<h1 class="page-title">Post Management</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Publish New Post</a>
 </p>
+
+<div class="search-container">
+
+    <div class="dropdown">
+        <select id="filterDropdown" onchange="filter()">
+            @if (ViewBag.filter == 0 || ViewBag.filter == null)
+            {
+                <option value="0">All</option>
+                @foreach (var item in ViewBag.Category)
+                {
+                    <option value="@item.Id">@item.Name</option>
+
+                }
+            }
+            else
+            {
+
+                @foreach (var item in ViewBag.Category)
+                {
+                    @if (ViewBag.filter == item.Id)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
+                }
+                @foreach (var item in ViewBag.Category)
+                {
+                    @if (ViewBag.filter != item.Id)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
+                }
+                <option value="0">All</option>
+
+            }
+        </select>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="search()" class="search-button">Search</button>
+
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                <label>Title </label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Thumbnail)
+                <label>Thumbnail </label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
+                <label>Content </label>
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+
+                <label>Category </label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserAccount)
+
+                <label>Published By </label>
+
             </th>
-            <th></th>
+            <th>
+                <label>Publish Date </label>
+            </th>
+            <th>
+                <label>Final Modify Date </label>
+            </th>
+            <th>
+                <label>Modify </label>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumbnail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserAccount.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="title">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ThumbnailBase64))
+                    {
+                        <img src="data:image/jpeg;base64,@item.ThumbnailBase64" alt="Thumbnail" style="max-width: 100px; max-height: 100px;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abstract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserAccount.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifyDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+<script>
+    function search() {
+        var filterValue = document.getElementById("filterDropdown").value;
+        var searchTerm = document.getElementById("searchInput").value;
+
+        var url = "/Posts/Index?filter=" + filterValue + "&search=" + encodeURIComponent(searchTerm);
+
+        window.location.href = url;
+    }
+
+
+</script>

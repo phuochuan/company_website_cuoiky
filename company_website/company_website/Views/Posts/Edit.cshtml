@@ -1,27 +1,153 @@
-﻿@model company_website.Models.Post
+﻿@model company_website.dto.PostDto
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Post";
 }
 
-<h1>Edit</h1>
+<style>
 
-<h4>Post</h4>
+    .page-title {
+        align-items: center;
+        text-align: center;
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+    /* Style for the form container */
+    .form-container {
+        max-width: 400px; /* Limit the maximum width of the form */
+        margin: 0 auto; /* Center the form horizontally */
+        padding: 20px; /* Add some padding inside the form */
+        border: 1px solid #ccc; /* Add a border around the form */
+        border-radius: 5px; /* Add rounded corners */
+        background-color: #f9f9f9; /* Light background color */
+    }
+
+    /* Style for form labels */
+    .form-group label {
+        margin-bottom: 5px; /* Add some space below each label */
+    }
+
+    /* Style for form inputs */
+    .form-group input[type="text"],
+    .form-group select {
+        width: 100%; /* Make inputs fill the entire width of the container */
+        padding: 10px; /* Add padding inside inputs */
+        margin-bottom: 10px; /* Add some space below each input */
+        border: 1px solid #ccc; /* Add a border around inputs */
+        border-radius: 3px; /* Add rounded corners to inputs */
+    }
+
+    /* Style for form submit button */
+    .form-group input[type="submit"] {
+        width: auto; /* Let the button determine its own width */
+        padding: 10px 20px; /* Add padding inside the button */
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none; /* Remove button border */
+        border-radius: 3px; /* Add rounded corners to the button */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+
+    /* Style for back to list link */
+    .back-list a {
+        display: block; /* Make the link a block-level element */
+        margin-top: 20px; /* Add some space above the link */
+        color: #007bff; /* Link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+        /* Style for back to list link on hover */
+        .back-list a:hover {
+            color: #0056b3; /* Darker link color on hover */
+        }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Định dạng chung cho các form group */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Định dạng cho nhãn (label) */
+    .control-label {
+        font-weight: bold;
+    }
+
+    /* Định dạng cho các input trong form */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Định dạng cho thông báo lỗi */
+    .text-danger {
+        color: #a94442;
+        font-size: 14px;
+    }
+
+    /* Định dạng cho nút submit */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    /* Định dạng cho phần xem trước ảnh thumbnail */
+    .img {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .img img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .img span {
+            font-size: 14px;
+            color: #666;
+        }
+
+</style>
+<h1 class="page-title">Edit Post</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <label asp-for="CategoryId" class="control-label">Category</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Category, "Id", "Name"))"> </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAccountId" class="control-label"></label>
-                <select asp-for="UserAccountId" class="form-control" asp-items="ViewBag.UserAccountId"></select>
-                <span asp-validation-for="UserAccountId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -29,19 +155,37 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Thumbnail" class="control-label"></label>
-                <input asp-for="Thumbnail" class="form-control" />
-                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                <label asp-for="Abstract" class="control-label"></label>
+                <input asp-for="Abstract" class="form-control" />
+                <span asp-validation-for="Abstract" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
                 <input asp-for="Content" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Thumbnail" class="control-label"></label>
+                <input asp-for="Thumbnail" class="form-control" type="file" />
+                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+        <div class="img">
+
+
+            @if (!string.IsNullOrEmpty(@Model.ThumbnailBase64))
+            {
+                <img src="data:image/jpeg;base64,@Model.ThumbnailBase64" alt="Thumbnail" style="max-width: 100px; max-height: 100px;" />
+            }
+            else
+            {
+                <span>No Image</span>
+            }
+        </div>
     </div>
 </div>
 
@@ -50,5 +194,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

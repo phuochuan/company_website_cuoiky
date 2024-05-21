@@ -4,45 +4,135 @@
     ViewData["Title"] = "Details";
 }
 
+<style>
+    /* Style for news article */
+    .news-article {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+        /* Style for article title */
+        .news-article header h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Style for author information */
+        .news-article .author-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for article content */
+        .news-article .article-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Style for thumbnail image */
+        .news-article .thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for action buttons */
+        .news-article footer .actions a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+            .news-article footer .actions a:hover {
+                text-decoration: underline;
+            }
+
+    /* CSS for zoom effect on thumbnails */
+    .thumbnail img.zoomed {
+        transform: scale(1.2); /* Scale the image by 20% */
+        transition: transform 0.3s ease; /* Add transition for smooth effect */
+    }
+
+    .author-info {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    /* Style for article title */
+    .news-article header h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Center the title of the first post */
+    .news-article:first-child header h1 {
+        text-align: center;
+    }
+
+</style>
 <h1>Details</h1>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumbnail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Thumbnail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<article class="news-article">
+    <header>
+        <h1>@Model.Title</h1>
+        <div class="author-info">
+
+            @if (Model.UserAccount != null)
+            {
+                <span>Published by @Model.UserAccount.Username</span>
+            }
+
+
+            <span>Published at @Model.CreateDate</span>
+        </div>
+    </header>
+    <section class="article-content">
+        <p>@Model.Abstract</p>
+        <div class="thumbnail">
+            @if (!string.IsNullOrEmpty(Model.ThumbnailBase64))
+            {
+                <img src="data:image/jpeg;base64,@Model.ThumbnailBase64" alt="Thumbnail" />
+            }
+            else
+            {
+                <span>No Image</span>
+            }
+        </div>
+        <p>@Model.Content</p>
+    </section>
+    <footer>
+        <div class="actions">
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </footer>
+</article>
+
+
+<script>
+    // JavaScript code to enhance HTML layout
+
+    // Add event listener to thumbnails for zoom effect
+    document.querySelectorAll('.thumbnail img').forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            this.classList.toggle('zoomed');
+        });
+    });
+
+    // Add hover effect to actions
+    document.querySelectorAll('.actions a').forEach(action => {
+        action.addEventListener('mouseover', function () {
+            this.style.color = '#ff4500'; // Change color on hover
+        });
+        action.addEventListener('mouseout', function () {
+            this.style.color = '#007bff'; // Reset color on mouseout
+        });
+    });
+</script>
