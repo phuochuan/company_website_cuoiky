@@ -1,0 +1,187 @@
+﻿@model company_website.Models.Employee
+
+@{
+    ViewData["Title"] = "Create New Employee";
+}
+
+<style>
+   
+
+    .page-title {
+        align-items: center;
+        text-align: center;
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+    /* Style for the form container */
+    .form-container {
+        max-width: 400px; /* Limit the maximum width of the form */
+        margin: 0 auto; /* Center the form horizontally */
+        padding: 20px; /* Add some padding inside the form */
+        border: 1px solid #ccc; /* Add a border around the form */
+        border-radius: 5px; /* Add rounded corners */
+        background-color: #f9f9f9; /* Light background color */
+    }
+
+    /* Style for form labels */
+    .form-group label {
+        margin-bottom: 5px; /* Add some space below each label */
+    }
+
+    /* Style for form inputs */
+    .form-group input[type="text"],
+    .form-group select {
+        width: 100%; /* Make inputs fill the entire width of the container */
+        padding: 10px; /* Add padding inside inputs */
+        margin-bottom: 10px; /* Add some space below each input */
+        border: 1px solid #ccc; /* Add a border around inputs */
+        border-radius: 3px; /* Add rounded corners to inputs */
+    }
+
+    /* Style for form submit button */
+    .form-group input[type="submit"] {
+        width: auto; /* Let the button determine its own width */
+        padding: 10px 20px; /* Add padding inside the button */
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none; /* Remove button border */
+        border-radius: 3px; /* Add rounded corners to the button */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+
+    /* Style for back to list link */
+    .back-list a {
+        display: block; /* Make the link a block-level element */
+        margin-top: 20px; /* Add some space above the link */
+        color: #007bff; /* Link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+        /* Style for back to list link on hover */
+        .back-list a:hover {
+            color: #0056b3; /* Darker link color on hover */
+        }
+
+    .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+
+
+
+</style>
+<h1 class="page-title" >New Emphoyee</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="formId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label">Department</label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Department, "Id", "Description"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fullname" class="control-label">Fullname</label>
+                <input asp-for="Fullname" class="form-control" />
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"> Date Of Birth</label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdNo" class="control-label"> Citize Identity Card</label>
+                <input asp-for="IdNo" class="form-control" />
+                <span asp-validation-for="IdNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"> Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="back-list">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+<script>
+    // Function to validate the DateOfBirth field
+    function validateDateOfBirth() {
+        var dateOfBirthInput = document.getElementById("DateOfBirth");
+        var dateOfBirthValue = dateOfBirthInput.value;
+
+        var dateFormatRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (!dateFormatRegex.test(dateOfBirthValue)) {
+            alert("Please enter a valid date in the format dd/MM/yyyy");
+            dateOfBirthInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    // Function to validate the PhoneNumber field
+    function validatePhoneNumber() {
+        var phoneNumberInput = document.getElementById("PhoneNumber");
+        var phoneNumberValue = phoneNumberInput.value;
+
+        var phoneNumberRegex = /^(090|098|091|031|035|038)\d{7}$/;
+
+        if (!phoneNumberRegex.test(phoneNumberValue)) {
+            alert("Please enter a valid phone number starting with 090, 098, 091, 031, 035, or 038");
+            phoneNumberInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function validatIdNo() {
+        var phoneNumberInput = document.getElementById("IdNo");
+        var phoneNumberValue = phoneNumberInput.value;
+        var phoneNumberRegex = /^(0)\d{8}%$/;
+
+        if (!phoneNumberRegex.test(phoneNumberValue)) {
+            alert("Please enter a valid ID No number starting with 0 and length is more bigger than 9");
+            phoneNumberInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    // Function to perform form validation before submission
+    function validateForm() {
+        if (!validateDateOfBirth() || !validatePhoneNumber() || !validatIdNo()) {
+            return false; 
+        }
+        return true;
+    }
+
+    // Attach form validation to form submission event
+    document.getElementById("formId").addEventListener("submit", function (event) {
+        if (!validateForm()) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
+
+
+</script>
