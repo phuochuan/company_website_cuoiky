@@ -9,6 +9,7 @@ using company_website.Models;
 
 namespace company_website.Controllers
 {
+    [Auth]
     public class EmployeesController : Controller
     {
         private readonly CompanyDbContext _context;
