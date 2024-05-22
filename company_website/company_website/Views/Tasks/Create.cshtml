@@ -1,16 +1,85 @@
-﻿@model company_website.Models.Task
+﻿@model company_website.dto.TaskDto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Task";
 }
 
-<h1>Create</h1>
 
-<h4>Task</h4>
+<style>
+
+
+    .page-title {
+        align-items: center;
+        text-align: center;
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+    /* Style for the form container */
+    .form-container {
+        max-width: 400px; /* Limit the maximum width of the form */
+        margin: 0 auto; /* Center the form horizontally */
+        padding: 20px; /* Add some padding inside the form */
+        border: 1px solid #ccc; /* Add a border around the form */
+        border-radius: 5px; /* Add rounded corners */
+        background-color: #f9f9f9; /* Light background color */
+    }
+
+    /* Style for form labels */
+    .form-group label {
+        margin-bottom: 5px; /* Add some space below each label */
+    }
+
+    /* Style for form inputs */
+    .form-group input[type="text"],
+    .form-group select {
+        width: 100%; /* Make inputs fill the entire width of the container */
+        padding: 10px; /* Add padding inside inputs */
+        margin-bottom: 10px; /* Add some space below each input */
+        border: 1px solid #ccc; /* Add a border around inputs */
+        border-radius: 3px; /* Add rounded corners to inputs */
+    }
+
+    /* Style for form submit button */
+    .form-group input[type="submit"] {
+        width: auto; /* Let the button determine its own width */
+        padding: 10px 20px; /* Add padding inside the button */
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none; /* Remove button border */
+        border-radius: 3px; /* Add rounded corners to the button */
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+
+    /* Style for back to list link */
+    .back-list a {
+        display: block; /* Make the link a block-level element */
+        margin-top: 20px; /* Add some space above the link */
+        color: #007bff; /* Link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+        /* Style for back to list link on hover */
+        .back-list a:hover {
+            color: #0056b3; /* Darker link color on hover */
+        }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+<h1 class="page-title">New Task</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" id="postForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -18,33 +87,29 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TaskDescription" class="control-label"></label>
+                <label asp-for="TaskDescription" class="control-label">Task Description</label>
                 <input asp-for="TaskDescription" class="form-control" />
                 <span asp-validation-for="TaskDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExpectedEndDate" class="control-label"></label>
+                <label asp-for="ExpectedEndDate" class="control-label">Expected End Date</label>
                 <input asp-for="ExpectedEndDate" class="form-control" />
-                <span asp-validation-for="ExpectedEndDate" class="text-danger"></span>
+                <span id="ExpectedEndDateError" class="text-danger"></span>
+
             </div>
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
+                <label asp-for="StartDate" class="control-label"> Start Date</label>
                 <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TeamSize" class="control-label"></label>
-                <input asp-for="TeamSize" class="form-control" />
-                <span asp-validation-for="TeamSize" class="text-danger"></span>
+                <span id="StartDateError" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <select asp-for="Status" class="form-control" asp-items="@(new SelectList(ViewBag.Status))"> </select>
+
             </div>
             <div class="form-group">
                 <label asp-for="Thumbail" class="control-label"></label>
-                <input asp-for="Thumbail" class="form-control" />
+                <input asp-for="Thumbail" class="form-control" type="file" />
                 <span asp-validation-for="Thumbail" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,10 +119,91 @@
     </div>
 </div>
 
-<div>
+<div class="back-list">
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+<script>
+
+    function validateStartDate() {
+        var dateOfBirthInput = document.getElementById("StartDate");
+        var dateOfBirthValue = dateOfBirthInput.value;
+
+        var dateFormatRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (!dateFormatRegex.test(dateOfBirthValue)) {
+            dateOfBirthInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function endDateOfBirth() {
+        var dateOfBirthInput = document.getElementById("ExpectedEndDate");
+        var dateOfBirthValue = dateOfBirthInput.value;
+
+        var dateFormatRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (!dateFormatRegex.test(dateOfBirthValue)) {
+            dateOfBirthInput.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function validateDates() {
+        function parseDate(input) {
+            // Split the input into parts
+            var parts = input.split('/');
+            // new Date(year, month index (0-11), day)
+            return new Date(parts[2], parts[1] - 1, parts[0]);
+        }
+
+        var startDateValue = document.getElementById('StartDate').value;
+        var endDateValue = document.getElementById('ExpectedEndDate').value;
+
+        var startDate = parseDate(startDateValue);
+        var endDate = parseDate(endDateValue);
+
+        var isValid = true;
+
+        if (startDate > endDate) {
+            document.getElementById('StartDateError').innerText = 'Start Date must be less than or equal to End Date.';
+            document.getElementById('ExpectedEndDateError').innerText = 'End Date must be greater than or equal to Start Date.';
+            isValid = false;
+        } else {
+            document.getElementById('StartDateError').innerText = '';
+            document.getElementById('ExpectedEndDateError').innerText = '';
+        }
+
+        return isValid;
+    }
+
+
+    document.getElementById("postForm").addEventListener("submit", function (event) {
+
+        var ExpectedEndDateError = document.getElementById("ExpectedEndDateError");
+        var StartDateError = document.getElementById("StartDateError");
+        if (!endDateOfBirth()) {
+            ExpectedEndDateError.textContent = "Please enter a valid date in the format dd/MM/yyyy.";
+            event.preventDefault(); // Prevent form submission
+        } else {
+            StartDateError.textContent = ""; // Clear error message
+            if (!validateStartDate()) {
+                StartDateError.textContent = "Please enter a valid date in the format dd/MM/yyyy.";
+                event.preventDefault(); // Prevent form submission
+            } else {
+                StartDateError.textContent = ""; 
+            }
+
+        }
+        if (!validateDates()) {
+            event.preventDefault();
+        }
+
+    });
+</script>

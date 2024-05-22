@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj": {}
+    "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj": {}
   },
   "projects": {
-    "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj": {
+    "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj",
+        "projectUniqueName": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj",
         "projectName": "company_website",
-        "projectPath": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj",
+        "projectPath": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\company_website.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\obj\\",
+        "outputPath": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

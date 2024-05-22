@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace company_website.Models;
 
@@ -20,6 +21,11 @@ public partial class Task
     public string? Status { get; set; }
 
     public byte[]? Thumbail { get; set; }
+    [Column("FINISH_DATE")]
+    public DateOnly? FinishDate { get; set; }
 
     public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+
+    [NotMapped]
+    public string? ThumbnailBase64 => Thumbail != null ? Convert.ToBase64String(Thumbail) : null;
 }

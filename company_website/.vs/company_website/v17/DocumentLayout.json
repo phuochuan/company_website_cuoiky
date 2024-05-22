@@ -1,26 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\",
+  "WorkspaceRootPath": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website\\company_website_cuoiky\\company_website\\company_website\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website\\company_website_cuoiky\\company_website\\company_website\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\views\\tasks\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\views\\tasks\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website\\company_website_cuoiky\\company_website\\company_website\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website\\company_website_cuoiky\\company_website\\company_website\\views\\employees\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\views\\employees\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|d:\\workspacedirectory\\bt01\\company_website\\company_website_cuoiky\\company_website\\company_website\\views\\posts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B2062E11-56EE-44DC-A328-AE56DCE5644C}|company_website\\company_website.csproj|solutionrelative:company_website\\views\\posts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,66 +35,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PostsController.cs",
-              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\PostsController.cs",
-              "RelativeDocumentMoniker": "company_website\\Controllers\\PostsController.cs",
-              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\PostsController.cs",
-              "RelativeToolTip": "company_website\\Controllers\\PostsController.cs",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAowGkAAAAAAAAA",
+              "Title": "Company.cs",
+              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Models\\Company.cs",
+              "RelativeDocumentMoniker": "company_website\\Models\\Company.cs",
+              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Models\\Company.cs",
+              "RelativeToolTip": "company_website\\Models\\Company.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T09:22:19.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeesController.cs",
-              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\EmployeesController.cs",
-              "RelativeDocumentMoniker": "company_website\\Controllers\\EmployeesController.cs",
-              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\EmployeesController.cs",
-              "RelativeToolTip": "company_website\\Controllers\\EmployeesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T09:22:17.454Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "company_website\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "company_website\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T09:22:16.744Z",
+              "WhenOpened": "2024-05-22T02:34:47.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Views\\Employees\\Create.cshtml",
-              "RelativeDocumentMoniker": "company_website\\Views\\Employees\\Create.cshtml",
-              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Views\\Employees\\Create.cshtml",
-              "RelativeToolTip": "company_website\\Views\\Employees\\Create.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "company_website\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "company_website\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAAAGgAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-21T09:22:12.843Z",
+              "WhenOpened": "2024-05-22T02:32:35.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Tasks\\Edit.cshtml",
+              "RelativeDocumentMoniker": "company_website\\Views\\Tasks\\Edit.cshtml",
+              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Tasks\\Edit.cshtml",
+              "RelativeToolTip": "company_website\\Views\\Tasks\\Edit.cshtml",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAAHAAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T02:16:23.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "company_website\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "company_website\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T02:15:48.874Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Views\\Posts\\Create.cshtml",
-              "RelativeDocumentMoniker": "company_website\\Views\\Posts\\Create.cshtml",
-              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website\\company_website_cuoiky\\company_website\\company_website\\Views\\Posts\\Create.cshtml",
-              "RelativeToolTip": "company_website\\Views\\Posts\\Create.cshtml",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAHwAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-21T09:16:59.195Z",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "company_website\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\WorkSpaceDirectory\\BT01\\company_website_cuoiky_v2\\company_website_cuoiky\\company_website\\company_website\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "company_website\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T02:03:05.425Z",
               "EditorCaption": ""
             }
           ]
