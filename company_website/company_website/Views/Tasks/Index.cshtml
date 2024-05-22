@@ -1,17 +1,260 @@
 ﻿@model IEnumerable<company_website.Models.Task>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Task Management";
 }
 
-<h1>Index</h1>
+<style>
+    /* Table styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Header row styles */
+    .title {
+        background-color: #f8f9fa; /* Light gray background */
+        color: #333; /* Text color */
+        font-weight: bold;
+    }
+
+    /* Content row styles */
+    .row-content {
+        background-color: #fff; /* White background */
+    }
+
+        /* Alternate row styles */
+        .row-content:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray background for alternate rows */
+        }
+
+        /* Hover styles */
+        .row-content:hover {
+            background-color: #e9ecef; /* Light gray background when hovering */
+        }
+
+    /* Cell padding and border */
+    th, td {
+        padding: 10px; /* Padding for cells */
+        border: 1px solid #ddd; /* Border for cells */
+    }
+
+        /* Links in cells */
+        td a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+            td a:hover {
+                text-decoration: underline; /* Underline on hover */
+            }
+
+    .page-title {
+        font-size: 24px; /* Adjust font size */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Bottom margin for spacing */
+        border-bottom: 2px solid #007bff; /* Bottom border for emphasis */
+        padding-bottom: 5px; /* Padding at the bottom to separate from content */
+    }
+
+
+
+
+
+    /* Style for the search container */
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    /* Style for the search input */
+    #searchInput {
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px 0 0 5px; /* Rounded left corners */
+        border: 1px solid #ccc;
+        margin-left: 10px;
+    }
+
+    /* Style for the search button */
+    .search-button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0; /* Rounded right corners */
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    /* Style for the dropdown container */
+    .dropdown {
+        position: relative;
+        margin-left: 10px; /* Add some space between search input/button and dropdown */
+    }
+
+    /* Style for the dropdown button */
+    .dropbtn {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Style for the dropdown content */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+
+        /* Style for dropdown options */
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            /* Style for dropdown options on hover */
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    /* Show the dropdown content when the dropdown button is clicked */
+    .show {
+        display: block;
+    }
+    /* Style cho select box */
+    #filterDropdown {
+        padding: 8px; /* Padding cho select box */
+        font-size: 14px; /* Kích thước font chữ */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 4px; /* Bo góc */
+        background-color: #fff; /* Màu nền */
+        color: #333; /* Màu chữ */
+    }
+
+        /* Style cho các option trong select box */
+        #filterDropdown option {
+            padding: 8px; /* Padding cho từng option */
+            font-size: 14px; /* Kích thước font chữ */
+            background-color: #fff; /* Màu nền */
+            color: #333; /* Màu chữ */
+        }
+
+            /* Hover effect cho các option */
+            #filterDropdown option:hover {
+                background-color: #f2f2f2; /* Màu nền khi hover */
+                color: #333; /* Màu chữ khi hover */
+            }
+
+    #filterDropdown2 {
+        padding: 8px; /* Padding cho select box */
+        font-size: 14px; /* Kích thước font chữ */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 4px; /* Bo góc */
+        background-color: #fff; /* Màu nền */
+        color: #333; /* Màu chữ */
+    }
+
+        /* Style cho các option trong select box */
+        #filterDropdown2 option {
+            padding: 8px; /* Padding cho từng option */
+            font-size: 14px; /* Kích thước font chữ */
+            background-color: #fff; /* Màu nền */
+            color: #333; /* Màu chữ */
+        }
+
+            /* Hover effect cho các option */
+            #filterDropdown2 option:hover {
+                background-color: #f2f2f2; /* Màu nền khi hover */
+                color: #333; /* Màu chữ khi hover */
+            }
+
+</style>
+<h1>Task Management</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Task</a>
 </p>
+<div class="search-container">
+    <div class="dropdown">
+        <select id="filterDropdown2" onchange="">
+            @if (ViewBag.Filter02 == 0)
+            {
+                <option value="0">All</option>
+                <option value="3">0-3</option>
+                <option value="10">4-10</option>
+                <option value="11">>11</option>
+            }
+            else if (ViewBag.Filter02 == 3)
+            {
+                <option value="3">0-3</option>
+                <option value="0">All</option>
+                <option value="10">4-10</option>
+                <option value="11">>11</option>
+            }
+            else if (ViewBag.Filter02 == 10)
+            {
+                <option value="10">4-10</option>
+                <option value="3">0-3</option>
+                <option value="0">All</option>
+                <option value="11">>11</option>
+            }
+            else if (ViewBag.Filter02 == 11)
+            {
+                <option value="11">>11</option>
+                <option value="10">4-10</option>
+                <option value="3">0-3</option>
+                <option value="0">All</option>
+            }
+        </select>
+
+        <select id="filterDropdown" onchange="">
+            @if (ViewBag.Filter == "All")
+            {
+                <option value="All">All</option>
+                <option value="InProgress">InProgress</option>
+                <option value="Delayed">Delayed</option>
+                <option value="Finish">Finish</option>
+            }
+            else if (ViewBag.Filter == "InProgress")
+            {
+                <option value="InProgress">InProgress</option>
+                <option value="All">All</option>
+                <option value="Delayed">Delayed</option>
+                <option value="Finish">Finish</option>
+            }
+            else if (ViewBag.Filter == "Delayed")
+            {
+                <option value="Delayed">Delayed</option>
+                <option value="InProgress">InProgress</option>
+                <option value="All">All</option>
+                <option value="Finish">Finish</option>
+            }
+            else if (ViewBag.Filter == "Finish")
+            {
+                <option value="Finish">Finish</option>
+                <option value="Delayed">Delayed</option>
+                <option value="InProgress">InProgress</option>
+                <option value="All">All</option>
+            }
+        </select>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="search()" class="search-button">Search</button>
+</div>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Thumbail)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -30,42 +273,64 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thumbail)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpectedEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumbail)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ThumbnailBase64))
+                    {
+                        <img src="data:image/jpeg;base64,@item.ThumbnailBase64" alt="Thumbnail" style="max-width: 100px; max-height: 100px;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
+                    <a asp-action="Edit" asp-route-id="@item.Id">Details & Update</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+
+<script>
+    function search() {
+        var filterValue = document.getElementById("filterDropdown").value;
+        var filterValue2 = document.getElementById("filterDropdown2").value;
+        var searchTerm = document.getElementById("searchInput").value;
+
+        var url = "/Tasks/Index?filter=" + encodeURIComponent(filterValue) + "&search=" + encodeURIComponent(searchTerm) + "&teamsize=" + encodeURIComponent(filterValue2);
+
+        window.location.href = url;
+    }
+</script>
+
