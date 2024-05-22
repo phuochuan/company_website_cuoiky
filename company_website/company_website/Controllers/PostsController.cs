@@ -10,6 +10,7 @@ using company_website.dto;
 
 namespace company_website.Controllers
 {
+    [Auth]
     public class PostsController : Controller
     {
         private readonly CompanyDbContext _context;
@@ -47,7 +48,7 @@ namespace company_website.Controllers
             ViewBag.Category = _context.Categories.ToList();
             ViewBag.filter = filter;
             var result = await query.ToListAsync();
-            result = result.OrderByDescending(a => a.ModifyDate).ToList(); 
+            result = result.OrderByDescending(a => a.ModifyDate).ToList();
             return View(result);
         }
 
@@ -104,6 +105,12 @@ namespace company_website.Controllers
 
                 //----- NHO LAY USER ---------
 
+                var username = HttpContext.Session.GetString("User");
+                var user = _context.UserAccounts.Where(a => a.Username.Equals(username)).
+                    FirstOrDefault();
+
+                
+
                 var newEntity = new Post
                 {
                     CategoryId = model.CategoryId,
@@ -112,7 +119,9 @@ namespace company_website.Controllers
                     Content = model.Content,
                     Thumbnail = thumbnailData,
                     CreateDate = DateOnly.FromDateTime(DateTime.Now),
-                    ModifyDate = DateOnly.FromDateTime(DateTime.Now)
+                    ModifyDate = DateOnly.FromDateTime(DateTime.Now),
+                    UserAccount = user,
+                    UserAccountId=user.Id
                 };
 
                 // Lưu đối tượng mới vào cơ sở dữ liệu

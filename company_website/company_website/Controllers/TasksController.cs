@@ -13,6 +13,7 @@ using System.Runtime.Serialization;
 
 namespace company_website.Controllers
 {
+    [Auth]
     public class TasksController : Controller
     {
         private readonly CompanyDbContext _context;

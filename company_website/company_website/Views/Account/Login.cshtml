@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    /* Style cho container chính */
+    .login-container {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Style cho tiêu đề */
+    .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Style cho nhãn và input */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    /* Style cho nút đăng nhập */
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    /* Style cho thông báo lỗi */
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+</style>
+
+<div class="login-container">
+    <h2 class="login-header">Login</h2>
+
+    <form method="post" action="/Account/Login" class="login-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <p style="color: red;">@ViewBag.Message</p>
+    }
+</div>

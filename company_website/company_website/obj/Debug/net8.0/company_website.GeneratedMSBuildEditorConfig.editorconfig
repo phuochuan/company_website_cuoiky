@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\WorkSpaceDirectory\BT01\company_website_cuoiky_v2\company_website_cuoiky\company_website\company_website
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/WorkSpaceDirectory/BT01/company_website_cuoiky_v2/company_website_cuoiky/company_website/company_website/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/WorkSpaceDirectory/BT01/company_website_cuoiky_v2/company_website_cuoiky/company_website/company_website/Views/Employees/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
